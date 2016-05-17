@@ -1,0 +1,10 @@
+description "dsc collector"
+author "John Bond <john.bond@icann.org>"
+
+start on runlevel [2345]
+stop on runlevel [016]
+
+respawn
+limit rss <%= @max_memory %> <%= @max_memory %>
+
+exec /usr/bin/dsc -f -p <%= @conf_file %>

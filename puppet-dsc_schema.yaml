@@ -1,0 +1,19 @@
+# Created using puppet-retrospec - https://github.com/nwops/puppet-retrospec
+# This schema file can be used to validate hiera data
+# http://www.kuwata-lab.com/kwalify/ruby/users-guide.01.html#schema
+# To validate your hiera data against this schema install the kwalify gem
+# 1. gem install kwalify
+# 2. kwalify -lf /Users/john.bond/git/puppet-dsc/puppet-dsc_schema.yaml hiera_data_file.yaml
+# By default this schema is generic and only covers basic parameter types.
+# You should update the schema to match your expected data types in your puppet classes
+# or anywhere else you call hiera using the hiera() function.
+# This schema contains 0 entries.
+--- 
+  type: map
+  mapping: 
+    hostclass: 
+      type: map
+      mapping: {}
+    definition: 
+      type: map
+      mapping: {}

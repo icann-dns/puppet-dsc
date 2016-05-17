@@ -1,0 +1,24 @@
+{
+  "name": "icann-dsc",
+  "version": "0.1.0",
+  "author": "icann",
+  "summary": "Module to manage DNSOARC DSC collector",
+  "license": "Apache-2.0",
+  "source": "https://github.com/icann-dns/puppet-dsc",
+  "project_page": "https://github.com/icann-dns/puppet-dsc",
+  "issues_url": "https://github.com/icann-dns/puppet-dsc/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 4.11.0"}
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem" : "Ubuntu",
+      "operatingsystemrelease" : [ "12.0.4", "14.04" ]
+    },
+    {
+      "operatingsystem" : "FreeBSD",
+      "operatingsystemrelease" : [ "10" ]
+    }
+  ]
+}
+

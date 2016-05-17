@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Written by Hugo Haas <hugo@debian.org> for ippl.
+# Modified by Marc Haber <mh+debian-packages@zugschlus.de>.
+# Adapted for dsc-collector by Marc Haber <mh+debian-packages@zugschlus.de>
+
+. /etc/rc.subr
+name=dsc
+rcvar=dsc_enable
+load_rc_config "$name"
+
+: ${dsc_enable="NO"}
+
+command="/usr/local/bin/dsc"
+command_args="-p <%= @conf_file %>"
+
+pidfile=<%= @pid_file %>
+start_precmd="install -d -o root -g wheel ${pidfile%/*}"
+
+run_rc_command "$1"
