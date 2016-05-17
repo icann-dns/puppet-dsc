@@ -1,0 +1,8 @@
+fixtures:
+    symlinks:
+      dsc: "#{source_dir}"
+    repositories:
+      stdlib:
+        repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
+        ref: 4.11.0
+    forge_modules:
