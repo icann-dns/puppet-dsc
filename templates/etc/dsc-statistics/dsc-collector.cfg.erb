@@ -5,8 +5,7 @@ bpf_program "(src ( <%= @ip_addresses.join(' or ') %> ) and src port 53 ) or (ds
 <%- end -%>
 <% 
 require 'facter'
-@iface = @listen_interfaces.empty? ? @interfaces.split(',') : @listen_interfaces
-@iface.each do |eth| if instance_variables.grep(/ipaddress6?_#{eth}$/).any? and ! eth.start_with?('dummy', 'lo') -%>
+@listen_interfaces.each do |eth| if instance_variables.grep(/ipaddress6?_#{eth}$/).any? and ! eth.start_with?('dummy', 'lo') -%>
 interface <%= eth.gsub('_','.') %>;
 <% end end -%>
 <% @ip_addresses.each do |addr| -%>
