@@ -2,7 +2,7 @@
 #
 class dsc::params {
 
-  $ip_addresses = [$::ipaddress]
+  $ip_addresses      = [$::ipaddress]
   $listen_interfaces = split($::interfaces, ',')
 
   $package = $::kernel ? {
