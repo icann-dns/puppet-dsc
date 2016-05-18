@@ -1,6 +1,10 @@
 # dsc::params
 #
 class dsc::params {
+
+  $ip_addresses = [$::ipaddress]
+  $listen_interfaces = split($::interfaces, ',')
+
   $package = $::kernel ? {
     'FreeBSD' => 'dsc-collector',
     default => 'dsc-statistics-collector',

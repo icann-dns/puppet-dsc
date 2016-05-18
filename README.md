@@ -15,63 +15,92 @@
 
 ## Overview
 
-Installs and manages the DNS-OARC dsc collector.
+Installs and manages the [DNS-OARC DNS Statistics Collector (dsc)](https://github.com/DNS-OARC/dsc).
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+With a default configueration the module will configuer dsc to listen on all real interfaces collecting statistics on an traffic it sees.  It currently uses a Hardcoded set of datatypes.
 
 ## Setup
 
 ### What dsc affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+ * Installs the dsc collector package
+ * creates the data collection directories
+ * remove the init.d script installed by the package and installs an upstart script (rc.d script on freebsd)
+ * installs our own version of the upload\_prep script.  
+ * remove the cron job installed b y the package and install our own
+ * manages the dsc-collector service
 
 ### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+ 
+ * stdlib 4.11.0
+ * This module uses flock to manage cron jobs and assumes it is already installed on the system.
 
 ### Beginning with dsc
 
-The very basic steps needed for a user to get the module up and running.
+Simply add the dsc module to your manifest
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+```puppet
+class { '::dsc': }
+```
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+### Local addresses
+
+DSC needs to know the local IP addresses so that it can work out the direction packets are traveling.  By default the module uses the `$::ipaddress` fact however you will often need to override this with a list of address.  These addresses are also used to create the bpf_program filter if it is enabled.
+
+```puppet
+class {'::dsc': 
+  ip_addresses => ['192.0.2.1'],
+  bpf_program => true,
+}
+```
+
+### Interfaces
+
+If you want to configure dsc to listen on a specific set of interfaces then pass them as an array
+
+```puppet 
+class { '::dsc': 
+    listen_interfaces => ['eth0', 'eth1']
+}
+```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### Classes
+
+#### Public Classes:
+ 
+ * [`dsc`](#class-dsc)
+
+#### Private Classes:
+ 
+ * [`dsc::params`](#class-dscparams)
+
+##### Parameters (all optional)
+
+  * `prefix` (Path, Default: /usr/local/dsc): The base path for the run_dir
+  * `ip\_addresses` (Array, Default: [$::ipaddress]): Specifies the DNS server's local IP addresses.  It is used to determine the direction of an IP packet: sending, receiving, or other.
+  * `bpf\_program` (Bool, Default: false): if true create a bfp filter to only capture data destined to the addresses listed in `ip\_addresses`
+  * `listen\_interfaces` (Array, Default: split($::interfaces, ',')): An array of interface that dsc should listen on.  It will ignore interfaces starting with lo or dummy.  By default it will use the interfaces listed in the `$::interfaces` fact.
+  * `package` (String, Default: OS specific): The name of the package to install
+  * `conf\_file` (Path, Default: OS specific): The location of the configueration file to manage
+  * `service` (String, Default: OS specific): The name of the service to manage
+  * `pid\_file` (Path, Default: /var/run/dsc-statistics-collector/default/dsc.pid): The location of the pid file
+  * `max\_memory` (Int, Default: 4194304): The upstart job limits the rss that dsc can used to this value.  Once this value has been reached dsc will segfault and upstart will restart it
+  * `presenter` (/^(dsp|hedgehog)$/, Default: 'dsp'): This is not intended to be used to support multible presenters.  it is somewhat cosmetic at the moment
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module was developed to work with the hedgehog presenter and has not been tested with DSP.
+
+Tested and working on FreeBSD 10 and Ubuntu 14.04
 
 ## Development
 
 Since your module is awesome, other users will want to play with it. Let them
 know what the ground rules for contributing are.
 
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.

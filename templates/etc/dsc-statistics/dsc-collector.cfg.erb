@@ -1,6 +1,6 @@
 run_dir "<%= @prefix %>/run/<%= @hostname %>";
 pid_file "<%= @pid_file %>";
-<%- if @bpf_program then -%>
+<%- if @bpf_program and @ip_addresses.any? then -%>
 bpf_program "(src ( <%= @ip_addresses.join(' or ') %> ) and src port 53 ) or (dst ( <%= @ip_addresses.join(' or ') %> ) and dst port 53 )";
 <%- end -%>
 <% 
