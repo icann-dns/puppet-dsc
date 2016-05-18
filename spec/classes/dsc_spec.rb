@@ -74,7 +74,7 @@ describe 'dsc' do
             .with( 'ensure' => 'directory')
         end
         it do
-          is_expected.to contain_file('/usr/local/dsc/run/foo/upload/dsc')
+          is_expected.to contain_file('/usr/local/dsc/run/foo/upload/dsp')
             .with( 'ensure' => 'directory')
         end
         it do
@@ -172,7 +172,7 @@ describe 'dsc' do
               .with( 'ensure' => 'directory')
           end
           it do
-            is_expected.to contain_file('/usr/local/foo/run/foo/upload/dsc')
+            is_expected.to contain_file('/usr/local/foo/run/foo/upload/dsp')
               .with( 'ensure' => 'directory')
           end
         end
