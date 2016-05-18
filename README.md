@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/icann-dns/puppet-dsc.svg?branch=master)](https://travis-ci.org/icann-dns/puppet-dsc)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/icann/dsc.svg?maxAge=2592000)](https://forge.puppet.com/icann/dsc)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/icann/dsc.svg?maxAge=2592000)](https://forge.puppet.com/icann/dsc)
 # dsc
 
 #### Table of Contents
