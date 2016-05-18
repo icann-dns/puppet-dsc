@@ -83,9 +83,9 @@ class { '::dsc':
 ##### Parameters (all optional)
 
   * `prefix` (Path, Default: /usr/local/dsc): The base path for the run_dir
-  * `ip_addresses` (Array, Default: [$::ipaddress]): Specifies the DNS server's local IP addresses.  It is used to determine the direction of an IP packet: sending, receiving, or other.
+  * `ip_addresses` (Array, Default: [`$::ipaddress`]): Specifies the DNS server's local IP addresses.  It is used to determine the direction of an IP packet: sending, receiving, or other.
   * `bpf_program` (Bool, Default: false): if true create a bfp filter to only capture data destined to the addresses listed in `ip_addresses`
-  * `listen_interfaces` (Array, Default: split($::interfaces, ',')): An array of interface that dsc should listen on.  It will ignore interfaces starting with lo or dummy.  By default it will use the interfaces listed in the `$::interfaces` fact.
+  * `listen_interfaces` (Array, Default: `split($::interfaces, ',')`): An array of interface that dsc should listen on.  It will ignore interfaces starting with lo or dummy.  By default it will use the interfaces listed in the `$::interfaces` fact.
   * `package` (String, Default: OS specific): The name of the package to install
   * `conf_file` (Path, Default: OS specific): The location of the configueration file to manage
   * `service` (String, Default: OS specific): The name of the service to manage
