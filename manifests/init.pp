@@ -10,7 +10,7 @@ class dsc (
   $service           = $dsc::params::service,
   $pid_file          = '/var/run/dsc-statistics-collector/default/dsc.pid',
   $max_memory        = 4194304,
-  $presenter         = 'dsc'
+  $presenter         = 'dsp'
 ) inherits dsc::params {
 
   validate_absolute_path($prefix)
@@ -22,7 +22,7 @@ class dsc (
   validate_string($service)
   validate_absolute_path($pid_file)
   validate_integer($max_memory)
-  validate_re($presenter, ['^(dsc|hedgehog)$'])
+  validate_re($presenter, ['^(dsp|hedgehog)$'])
 
   #im not sure we need the group any more
   $group = $::kernel ? {
