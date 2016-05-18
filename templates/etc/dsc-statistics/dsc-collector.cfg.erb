@@ -3,7 +3,6 @@ pid_file "<%= @pid_file %>";
 <%- if @bpf_program and @ip_addresses.any? then -%>
 bpf_program "(src ( <%= @ip_addresses.join(' or ') %> ) and src port 53 ) or (dst ( <%= @ip_addresses.join(' or ') %> ) and dst port 53 )";
 <%- end -%>
-<%= @listen_interfaces %>
 <% 
 @listen_interfaces.each do |eth| if instance_variables.grep(/ipaddress6?_#{eth}$/).any? and ! eth.start_with?('dummy', 'lo') -%>
 interface <%= eth.gsub('_','.') %>;
