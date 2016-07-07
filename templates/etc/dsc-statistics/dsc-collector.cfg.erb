@@ -36,4 +36,6 @@ dataset traffic_volume_queries dns Transport:transport IPVersion:dns_ip_version 
 dataset traffic_volume_responses dns Transport:transport IPVersion:dns_ip_version replies-only; 
 dataset traffic_sizes_queries dns Transport:transport MsgLen:msglen queries-only; 
 dataset traffic_sizes_responses dns Transport:transport MsgLen:msglen replies-only; 
+<%- if @kernel == 'Linux' -%>
 dataset server_addr dns All:null ServerAddr:server queries-only;
+<%- end -%>
