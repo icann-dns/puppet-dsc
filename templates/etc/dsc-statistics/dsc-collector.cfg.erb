@@ -35,6 +35,7 @@ dataset traffic_volume_responses dns Transport:transport IPVersion:dns_ip_versio
 dataset traffic_sizes_queries dns Transport:transport MsgLen:msglen queries-only; 
 dataset traffic_sizes_responses dns Transport:transport MsgLen:msglen replies-only; 
 <%- if @kernel == 'Linux' -%>
+#custom params
 dataset server_addr dns All:null ServerAddr:server queries-only;
 dataset client_subnet dns All:null ClientSubnet:cip4_net queries-only max-cells=200;
 dataset client_subnet2 dns Class:query_classification ClientSubnet:cip4_net queries-only max-cells=200;
