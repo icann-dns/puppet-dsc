@@ -52,8 +52,8 @@ describe 'dsc' do
         end
 
         it { is_expected.to contain_package(package) }
-        it { is_expected.to contain_dsc() }
-        it { is_expected.to contain_dsc__params() }
+        it { is_expected.to contain_class('Dsc') }
+        it { is_expected.to contain_class('Dsc::Params') }
         it do
           is_expected.to contain_file('/usr/local/dsc')
             .with(
