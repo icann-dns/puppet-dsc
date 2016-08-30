@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "json_pure", "<=1.8.3"
 group :test do
     gem "listen", "<=3.0.6"
     gem "nokogiri", "<=1.6.7.2"
