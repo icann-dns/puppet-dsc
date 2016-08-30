@@ -3,7 +3,7 @@
 class dsc (
   $prefix            = '/usr/local/dsc',
   $ip_addresses      = $dsc::params::ip_addresses,
-  $custom_dataset    = $dsc::params::custom_dataset,
+  $custom_dataset    = [],
   $bpf_program       = false,
   $listen_interfaces = $dsc::params::listen_interfaces,
   $package           = $dsc::params::package,
