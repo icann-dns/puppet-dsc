@@ -3,6 +3,7 @@
 class dsc::params {
 
   $ip_addresses      = [$::ipaddress]
+  $custom_dataset    = []
   $listen_interfaces = split($::interfaces, ',')
 
   $package = $::kernel ? {

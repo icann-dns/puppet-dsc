@@ -40,3 +40,6 @@ dataset server_addr dns All:null ServerAddr:server queries-only;
 dataset client_subnet dns All:null ClientSubnet:cip4_net queries-only max-cells=200;
 dataset client_subnet2 dns Class:query_classification ClientSubnet:cip4_net queries-only max-cells=200;
 <%- end -%>
+<% @custom_dataset.each do |dataset| -%>
+dataset <%= dataset %>;
+<%- end -%>

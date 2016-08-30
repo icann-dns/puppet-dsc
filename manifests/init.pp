@@ -3,6 +3,7 @@
 class dsc (
   $prefix            = '/usr/local/dsc',
   $ip_addresses      = $dsc::params::ip_addresses,
+  $custom_dataset    = $dsc::params::custom_dataset,
   $bpf_program       = false,
   $listen_interfaces = $dsc::params::listen_interfaces,
   $package           = $dsc::params::package,
@@ -15,6 +16,7 @@ class dsc (
 
   validate_absolute_path($prefix)
   validate_array($ip_addresses)
+  validate_array($custom_dataset)
   validate_bool($bpf_program)
   validate_array($listen_interfaces)
   validate_string($package)
