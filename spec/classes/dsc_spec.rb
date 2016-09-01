@@ -17,6 +17,7 @@ describe 'dsc' do
     {
       #prefix: "/usr/local/dsc",
       #ip_addresses: [],
+      #custom_datasets: [],
       #bpf_program: false,
       #destinations: [],
       #listen_interfaces: [],
@@ -190,6 +191,18 @@ describe 'dsc' do
           before { params.merge!( listen_interfaces: ['bla0'] ) }
           it { is_expected.to compile }
         end
+        context 'custom_dataset' do
+          before { params.merge!( custom_dataset: ['qtype'] ) }
+          it { is_expected.to compile }
+          it do
+            is_expected.to contain_file(conf_file)
+              .with(
+                'ensure'  => 'present',
+              ).with_content(
+                /dataset qtype/
+              )
+          end
+        end
         context 'package' do
           before { params.merge!( package: 'foo' ) }
           it { is_expected.to compile }
@@ -287,6 +300,10 @@ describe 'dsc' do
         end
         context 'listen_interfaces' do
           before { params.merge!( listen_interfaces: true ) }
+          it { expect { subject.call }.to raise_error(Puppet::Error) }
+        end
+        context 'custom_dataset' do
+          before { params.merge!( custom_dataset: true ) }
           it { expect { subject.call }.to raise_error(Puppet::Error) }
         end
         context 'package' do

@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "json_pure", "<=1.8.3"
 group :test do
     gem "listen", "<=3.0.6"
-    gem "nokogiri", "<=1.6.7.2"
+    gem "nokogiri", "<=1.6.8.0"
     gem "rake"
     gem "rspec"
     gem "puppet", ENV['PUPPET_GEM_VERSION'] || '~> 3.8.3'
