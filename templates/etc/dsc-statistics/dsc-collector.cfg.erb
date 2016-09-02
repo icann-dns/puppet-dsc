@@ -2,8 +2,6 @@ run_dir "<%= @prefix %>/run/<%= @hostname %>";
 pid_file "<%= @pid_file %>";
 <%- if @bpf_program and @ip_addresses.any? then -%>
 bpf_program "(src ( <%= @ip_addresses.join(' or ') %> ) and src port 53 ) or (dst ( <%= @ip_addresses.join(' or ') %> ) and dst port 53 )";
-<%- elsif @ip_addresses.any? then -%>
-bpf_program "(host ( <%= @ip_addresses.join(' or ') %> )";
 <%- end -%>
 <% 
 @listen_interfaces.each do |eth| if instance_variables.grep(/ipaddress6?_#{eth}$/).any? and ! eth.start_with?('dummy', 'lo') -%>

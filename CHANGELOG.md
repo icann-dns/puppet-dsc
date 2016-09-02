@@ -1,7 +1,3 @@
-## 2016-09-01 0.1.5
-### Summart
-include a filter for the locally define service addresses
-
 ## 2016-09-01 0.1.4
 ### Summart
 include all default datasets

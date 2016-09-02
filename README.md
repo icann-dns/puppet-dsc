@@ -89,6 +89,7 @@ class { '::dsc':
   * `ip_addresses` (Array, Default: [`$::ipaddress`]): Specifies the DNS server's local IP addresses.  It is used to determine the direction of an IP packet: sending, receiving, or other.
   * `bpf_program` (Bool, Default: false): if true create a bfp filter to only capture data destined to the addresses listed in `ip_addresses`
   * `listen_interfaces` (Array, Default: `split($::interfaces, ',')`): An array of interface that dsc should listen on.  It will ignore interfaces starting with lo or dummy.  By default it will use the interfaces listed in the `$::interfaces` fact.
+  * `custom_dataset` (Array, Default: []): An array of additional datasets that dsc should use. By default it will use generate the default dsc datasets only.
   * `package` (String, Default: OS specific): The name of the package to install
   * `conf_file` (Path, Default: OS specific): The location of the configueration file to manage
   * `service` (String, Default: OS specific): The name of the service to manage
