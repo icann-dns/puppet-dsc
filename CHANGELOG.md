@@ -1,3 +1,7 @@
+## 2017-01-26 0.1.6
+### Summart
+Bug fixes
+
 ## 2017-01-26 0.1.5
 ### Summart
 Add systemd support for Ubuntu 16.04

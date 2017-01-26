@@ -1,6 +1,6 @@
 {
   "name": "icann-dsc",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "icann",
   "summary": "Module to manage DNSOARC DSC collector",
   "license": "Apache-2.0",
