@@ -1,0 +1,9 @@
+[Unit]
+Description=A DNS Statistics Collector - Collector component
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/dsc -f -p /etc/dsc-statistics/dsc-collector.cfg
+
+[Install]
+WantedBy=multi-user.target

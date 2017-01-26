@@ -71,17 +71,24 @@ class dsc (
     file {'/etc/cron.d/dsc-statistics-collector':
       ensure => absent,
     }
-    file {'/etc/init.d/dsc-statistics-collector':
-      ensure  => present,
-      content => 'echo "Use upstart"',
-      mode    => '0555',
-      before  => Service[$service],
-    }
-    file {"/etc/init/${service}.conf":
-      ensure  => present,
-      content => template('dsc/etc/init/dsc-statistics-collector.conf.erb'),
-      before  => Service[$service],
-    }
+    if $::lsbdistcodename == 'trusty' {
+      file {'/etc/init.d/dsc-statistics-collector':
+        ensure  => present,
+        content => 'echo "Use upstart"',
+        mode    => '0555',
+        before  => Service[$service],
+      }
+      file {"/etc/init/${service}.conf":
+        ensure  => present,
+        content => template('dsc/etc/init/dsc-statistics-collector.conf.erb'),
+        before  => Service[$service],
+      }
+  } else {
+      file {"/lib/systemd/system/${service}.service":
+        ensure  => present,
+        content => template('dsc/lib/systemd/system/dsc-statistics-collector.service.erb'),
+        before  => Service[$service],
+      }   
   }
   service {$service:
     ensure    => running,

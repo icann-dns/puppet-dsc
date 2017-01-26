@@ -101,7 +101,7 @@ class { '::dsc':
 
 This module was developed to work with the hedgehog presenter and has not been tested with DSP.
 
-Tested and working on FreeBSD 10 and Ubuntu 14.04
+Tested and working on FreeBSD 10, Ubuntu 14.04 and Ubuntu 16.04
 
 ## Development
 
