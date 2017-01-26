@@ -83,12 +83,13 @@ class dsc (
         content => template('dsc/etc/init/dsc-statistics-collector.conf.erb'),
         before  => Service[$service],
       }
-  } else {
+    } else {
       file {"/lib/systemd/system/${service}.service":
         ensure  => present,
         content => template('dsc/lib/systemd/system/dsc-statistics-collector.service.erb'),
         before  => Service[$service],
       }   
+    }
   }
   service {$service:
     ensure    => running,
