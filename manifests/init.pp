@@ -88,7 +88,7 @@ class dsc (
         ensure  => present,
         content => template('dsc/lib/systemd/system/dsc-statistics-collector.service.erb'),
         before  => Service[$service],
-      }   
+      }
     }
   }
   service {$service:
