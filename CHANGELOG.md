@@ -1,24 +1,21 @@
+## 2017-01-26 0.1.7
+* Added support for ubuntu 16.04 and removed suppoort for Ubuntu 12.04
+
 ## 2017-01-26 0.1.6
-### Summart
-Bug fixes
+* Bug fixes
 
 ## 2017-01-26 0.1.5
-### Summart
-Add systemd support for Ubuntu 16.04
+* Add systemd support for Ubuntu 16.04
 
 ## 2016-09-01 0.1.4
-### Summart
-include all default datasets
+* include all default datasets
 
 ## 2016-09-01 0.1.3
-### Summart
-Add Custom dataset
+* Add Custom dataset
 
 ## 2016-05-18 0.1.1
-### Summart
-Fix a few cosmetic changes
+* Fix a few cosmetic changes
 
 ## 2016-05-18 0.1.0
-### Summart
-Initial release
+* Initial release
 
