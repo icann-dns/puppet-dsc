@@ -1,4 +1,4 @@
-run_dir "<%= @prefix %>/run/<%= @hostname %>";
+run_dir "<%= @prefix %>/run/<%= @sub_folder %>";
 pid_file "<%= @pid_file %>";
 <%- if @bpf_program and @ip_addresses.any? then -%>
 bpf_program "(src ( <%= @ip_addresses.join(' or ') %> ) and src port 53 ) or (dst ( <%= @ip_addresses.join(' or ') %> ) and dst port 53 )";
@@ -37,8 +37,10 @@ dataset client_port_range dns All:null PortRange:dns_sport_range queries-only;
 dataset direction_vs_ipproto ip Direction:ip_direction IPProto:ip_proto any;
 dataset dns_ip_version_vs_qtype dns IPVersion:dns_ip_version Qtype:qtype queries-only;
 #custom datasets
-<% @custom_dataset.each do |dataset| -%>
-dataset <%= dataset %>;
+<% if @custom_dataset -%>
+  <% @custom_dataset.each do |dataset| -%>
+  dataset <%= dataset %>;
+  <%- end -%>
 <%- end -%>
 <%- if @kernel == 'Linux' -%>
 dataset server_addr dns All:null ServerAddr:server queries-only;

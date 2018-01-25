@@ -1,32 +1,21 @@
 # Class: dsc
 #
 class dsc (
-  $prefix            = '/usr/local/dsc',
-  $ip_addresses      = $dsc::params::ip_addresses,
-  $bpf_program       = false,
-  $listen_interfaces = $dsc::params::listen_interfaces,
-  $custom_dataset    = [],
-  $package           = $dsc::params::package,
-  $conf_file         = $dsc::params::conf_file,
-  $service           = $dsc::params::service,
-  $pid_file          = '/var/run/dsc-statistics-collector/default/dsc.pid',
-  $max_memory        = 4194304,
-  $presenter         = 'dsp'
+  Optional[Array[String]] $custom_dataset = undef,
+  Stdlib::Absolutepath $prefix = '/usr/local/dsc',
+  Array[Stdlib::Compat::Ip_address] $ip_addresses = $::dsc::params::ip_addresses,
+  Boolean $bpf_program = false,
+  Array[String] $listen_interfaces = $::dsc::params::listen_interfaces,
+  String $package = $dsc::params::package,
+  Stdlib::Absolutepath $conf_file = $::dsc::params::conf_file,
+  String $service = $dsc::params::service,
+  Stdlib::Absolutepath $pid_file = '/var/run/dsc-statistics-collector/default/dsc.pid',
+  Integer $max_memory = 4194304,
+  Enum['dsp', 'hedgehog'] $presenter = 'dsp',
+  String $sub_folder = $::hostname,
 ) inherits dsc::params {
 
-  validate_absolute_path($prefix)
-  validate_array($ip_addresses)
-  validate_bool($bpf_program)
-  validate_array($listen_interfaces)
-  validate_array($custom_dataset)
-  validate_string($package)
-  validate_absolute_path($conf_file)
-  validate_string($service)
-  validate_absolute_path($pid_file)
-  validate_integer($max_memory)
-  validate_re($presenter, ['^(dsp|hedgehog)$'])
-
-  #im not sure we need the group any more
+  # im not sure we need the group any more
   $group = $::kernel ? {
     'FreeBSD' => 'www',
     default   => 'www-data',
@@ -40,11 +29,11 @@ class dsc (
       mode   => '0755';
     "${prefix}/run/":
       ensure => directory;
-    "${prefix}/run/${::hostname}":
+    "${prefix}/run/${sub_folder}":
       ensure => directory;
-    "${prefix}/run/${::hostname}/upload":
+    "${prefix}/run/${sub_folder}/upload":
       ensure => directory;
-    "${prefix}/run/${::hostname}/upload/${presenter}":
+    "${prefix}/run/${sub_folder}/upload/${presenter}":
       ensure => directory;
   }
   file {$conf_file:
@@ -96,7 +85,7 @@ class dsc (
     enable    => true,
     require   => [
         File[$conf_file,
-          "${prefix}/run/${::hostname}/upload/${presenter}"],
+          "${prefix}/run/${sub_folder}/upload/${presenter}"],
         Package[$package],
     ],
     subscribe => [
