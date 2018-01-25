@@ -39,7 +39,7 @@ dataset dns_ip_version_vs_qtype dns IPVersion:dns_ip_version Qtype:qtype queries
 #custom datasets
 <% if @custom_dataset -%>
   <% @custom_dataset.each do |dataset| -%>
-  dataset <%= dataset %>;
+dataset <%= dataset %>;
   <%- end -%>
 <%- end -%>
 <%- if @kernel == 'Linux' -%>
