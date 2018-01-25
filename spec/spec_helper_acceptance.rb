@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'beaker-rspec'
 
 # Install Puppet on all hosts
