@@ -7,6 +7,7 @@ spec/fixtures/manifests/
 spec/fixtures/modules/
 .vagrant/
 .bundle/
+.ruby-version
 coverage/
 log/
 .idea/
@@ -14,6 +15,6 @@ log/
 .librarian/
 Puppetfile.lock
 *.iml
-*.sw?
 .*.sw?
 .yardoc/
+Guardfile

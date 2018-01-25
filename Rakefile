@@ -37,6 +37,7 @@ begin
     config.future_release = "#{version}"
     config.header = "# Change log\n\nAll notable changes to this project will be documented in this file.\nEach new release typically also includes the latest modulesync defaults.\nThese should not impact the functionality of the module."
     config.exclude_labels = %w{duplicate question invalid wontfix modulesync}
+    config.user = 'b4ldr'
   end
 rescue LoadError
 end
