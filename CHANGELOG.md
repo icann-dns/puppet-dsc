@@ -1,3 +1,7 @@
+## 2018-01-25 0.2.0
+* allow use to override the subfolder files are stored in
+* remove legacy validate\_\* functions
+
 ## 2017-01-26 0.1.7
 * Added support for ubuntu 16.04 and removed suppoort for Ubuntu 12.04
 
