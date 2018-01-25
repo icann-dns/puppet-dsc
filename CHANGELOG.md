@@ -1,3 +1,6 @@
+## 2018-01-25 0.2.1
+* fix whitespace issues with datasets
+
 ## 2018-01-25 0.2.0
 * allow use to override the subfolder files are stored in
 * remove legacy validate\_\* functions
