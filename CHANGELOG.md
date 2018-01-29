@@ -1,3 +1,6 @@
+## 2018-01-29 0.2.2
+* fix whitespace issues with datasets
+
 ## 2018-01-25 0.2.1
 * fix whitespace issues with datasets
 

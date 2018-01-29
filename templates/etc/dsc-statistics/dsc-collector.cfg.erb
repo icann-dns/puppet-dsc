@@ -38,7 +38,7 @@ dataset direction_vs_ipproto ip Direction:ip_direction IPProto:ip_proto any;
 dataset dns_ip_version_vs_qtype dns IPVersion:dns_ip_version Qtype:qtype queries-only;
 #custom datasets
 <% if @custom_dataset -%>
-  <% @custom_dataset.each do |dataset| -%>
+  <%- @custom_dataset.each do |dataset| -%>
 dataset <%= dataset %>;
   <%- end -%>
 <%- end -%>
