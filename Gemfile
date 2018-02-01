@@ -13,10 +13,8 @@ end
 group :test do
   gem 'puppetlabs_spec_helper', '~> 2.2.0',                         :require => false
   gem 'rspec-puppet', '~> 2.5',                                     :require => false
-  gem 'semantic_puppet',                                            :require => false
   gem 'rspec-puppet-facts',                                         :require => false
   gem 'rspec-puppet-utils',                                         :require => false
-  gem 'puppet-lint',                                                :require => false
   gem 'puppet-lint-absolute_classname-check',                       :require => false
   gem 'puppet-lint-leading_zero-check',                             :require => false
   gem 'puppet-lint-trailing_comma-check',                           :require => false
@@ -24,6 +22,7 @@ group :test do
   gem 'puppet-lint-classes_and_types_beginning_with_digits-check',  :require => false
   gem 'puppet-lint-unquoted_string-check',                          :require => false
   gem 'puppet-lint-variable_contains_upcase',                       :require => false
+  gem 'semantic_puppet',                                            :require => false
   gem 'metadata-json-lint',                                         :require => false
   gem 'puppet-blacksmith',                                          :require => false
   gem 'pry',                                                        :require => false
@@ -65,9 +64,9 @@ group :system_tests do
   gem 'serverspec',                    :require => false
   gem 'beaker-puppet_install_helper',  :require => false
   gem 'beaker-testmode_switcher',      :require => false
-  gem 'scooter',                       :require => false
   gem 'beaker-pe',                     :require => false
   gem 'beaker-answers',                :require => false
+  gem 'vagrant-wrapper',               :require => false
 end
 
 
