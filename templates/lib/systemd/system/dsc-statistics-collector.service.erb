@@ -3,6 +3,7 @@ Description=A DNS Statistics Collector - Collector component
 
 [Service]
 Type=simple
+MemoryLimit=8G
 ExecStart=/usr/bin/dsc -f -p /etc/dsc-statistics/dsc-collector.cfg
 
 [Install]
