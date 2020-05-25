@@ -77,6 +77,10 @@ class dsc (
         ensure  => present,
         content => template('dsc/lib/systemd/system/dsc-statistics-collector.service.erb'),
         before  => Service[$service],
+      }~> exec { 'dsc-systemd-reload':
+        command     => 'systemctl daemon-reload',
+        path        => [ '/bin', ],
+        refreshonly => true,
       }
     }
   }
